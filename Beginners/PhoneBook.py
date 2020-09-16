@@ -1,4 +1,6 @@
+#Define a function for to welcome the user and provide options on how the phonebook works
 def welcome():
+    #Create an entry variable using the input function and multiple line strings format
     entry = int(input("""Welcome to Py Contact Book.  
                     >>>Py Contact Book commands are: 1,2,3 or 4 <<<
                     >>>What would you like to do?<<<
@@ -9,15 +11,27 @@ def welcome():
                     5. Exit
                     Enter your entry here(1,2,3 0r 4):  """))
     
+#Close the function    
     return entry
 
+#Define a Phonebook
 def phonebook():
+    #initiate an empty contact dictionary to store values
     contact = {}
+    
+    #initiate a while loop
     while True:
+        #Set entry to welcome function
         entry = welcome()
+        
+        #Create conditions decision making
         if entry == 1:
+            #Check if contact dict is empty
+            #If not empty,i.e bool(contact)==False, Print current contact list
             if bool(contact) != False:
-                print(contact)
+                for k, v in contact.items():
+                    print(k, '-->', v)
+             #Else inform user that the contact book is empty
             else:
                 print('You have an empty phonebook! Go back to the menu to add a new contact')
         elif entry == 2:
@@ -26,10 +40,9 @@ def phonebook():
             if phone_number not in contact:
                 contact.update({contact_name:phone_number})
                 print('Contact successfully saved')
-                print('Your updated phonebook is : ',contact)
-            else:
-                print('Contact already exits. Would you rather like to update the contact?')
-    
+                print('Your updated phonebook is Shown below: ')
+                for k, v in contact.items():
+                    print(k, '-->', v)
         elif entry == 3:
             name = input('Enter the name of the contact details you wish to view: ')
             if name in contact:
@@ -42,11 +55,17 @@ def phonebook():
             confirm = input('Are you sure you wish to delete this contact? Yes/No: ')
             if confirm.capitalize() == 'Yes':
                 contact.pop(name)
-                print('Updated contact list is: ',contact)
+                for k, v in contact.items():
+                    print('The Updated contact list is shown below:')
+                    print(k, '-->', v)
             else:
                 print('Return to Main Menu')
         elif entry == 5:
-            break
             print('Thanks for using the Py Contact Book')
+            break
+            
+            
+        else:
+            print('Incorrect Entry!')
 
     
