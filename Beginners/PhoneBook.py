@@ -105,3 +105,5 @@ def phonebook():
             print('Incorrect Entry!')
 
     
+#Run Program
+phonebook()
